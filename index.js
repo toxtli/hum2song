@@ -1481,7 +1481,7 @@ function exportSong(ns) {
   let exportFormat = songToExportFormat(ns);
   let dataUrl = generateDataUrl(exportFormat);
   let hash = '#cmp=' + dataUrl;
-  let url = '/editor/daw/' + hash;
+  let url = '/daw/' + hash;
   if (inIframe()) {
     parent.DAW.addCompositionByURL( dataUrl ).catch( e => {
       console.error( e );
