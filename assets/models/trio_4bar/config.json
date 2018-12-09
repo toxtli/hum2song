@@ -1,0 +1,21 @@
+{
+  "type": "MusicVAE",
+  "dataConverter": {
+    "type": "TrioConverter",
+    "args": {
+      "numSteps": 64,
+      "numSegments": 4,
+      "melArgs": {
+        "minPitch": 21,
+        "maxPitch": 108
+      },
+      "bassArgs": {
+        "minPitch": 21,
+        "maxPitch": 108
+      },
+      "drumsArgs": {
+        "pitchClasses": null
+      }
+    }
+  }
+}

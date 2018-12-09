@@ -1,0 +1,370 @@
+<html lang="en">
+  <head>
+    <title>Hum2Song</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <link id="favicon" rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <script src='assets/libs/midijs/midi.js'></script>
+    <script src='assets/libs/jquery@3.3.1/jquery.js'></script>
+    <script src='assets/libs/lodash@4.17.4/lodash.min.js'></script>
+    <script src='assets/libs/webmidi@2.0.0/webmidi.min.js'></script>
+    <script src="assets/libs/midiconvert@0.4.7/MidiConvert.js"></script>
+    <script src='assets/libs/tonejs/Tone.js'></script>
+    <script src="assets/libs/@magenta/music@1.2.3"></script>
+    <script src='assets/libs/tonal/dist/tonal.min.js'></script>
+    <script src="assets/libs/FileSaver@1.3.8/FileSaver.min.js" defer></script>
+    <script src='assets/libs/synthjs/synth.js'></script>
+    <script src="./index.js" defer></script>
+    <link rel="stylesheet" href="./index.css">
+  </head>
+  <body>
+    <div id="mainContainer">
+      <div id="topbar">
+        <div id="topleft">
+          <img src="assets/images/hum2song.png" height="50">
+        </div>
+        <div id="topcenter">
+          <div id="levels">
+            <button id="btnSimpleMode" class="button player active" onclick="setActiveLevel(event, false)" id="pianoBtn">Simple</button>
+            <button id="btnAdvanceMode" class="button player" onclick="setActiveLevel(event, true)">Advanced</button>
+          </div>
+        </div>
+      </div>
+      <div id="workspace">
+        <div id="modelLoading">
+          <span>Loading ...</span>
+        </div>
+        <div id="simple">
+          <div class="box">            
+            <div class="top">
+              <h1>SIMPLE MODE</h1>
+            </div>   
+            <div class="middle">
+              <center>
+                <hr>
+                <div class="section">
+                  INSTRUCTIONS
+                </div>
+                <hr>
+                <br>
+                <div class="instructions">
+                  Hum2Song! is a Web AI application that is able to create an accompaniment song for a singed sound. You only need to click on the "Record Audio", start humming/singing and click on the "Stop" button to start the conversion process. Give it a try!
+                </div>
+                <hr>
+                <div class="section">
+                  INPUT
+                </div>
+                <hr>
+                <button class="button" id="btnRecordSimple" disabled>
+                    <span class="text">Record audio</span>
+                    <span class="loading">Transcribing...</span>
+                </button>
+              </center>
+            </div>
+            <div id="modelReadySimple" hidden>
+              <div class="middle">
+                <center>
+                  <div id="songOptions" hidden>
+                    <hr>
+                    <div class="section">
+                      OUTPUT
+                    </div>
+                    <hr>
+                    <div class="playIcon" id="playIconSimple">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24">
+                        <path xmlns="http://www.w3.org/2000/svg" d="M8 5v14l11-7z"/>
+                        <path xmlns="http://www.w3.org/2000/svg" d="M0 0h24v24H0z" fill="none"/>
+                      </svg>
+                    </div>
+                    <div class="stopIcon" id="stopIconSimple">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24">
+                        <path xmlns="http://www.w3.org/2000/svg" d="M0 0h24v24H0z" fill="none"/>
+                        <path xmlns="http://www.w3.org/2000/svg" d="M6 6h12v12H6z"/>
+                      </svg>
+                    </div>
+                    <button class="button" id="btnSaveScore">Download</button>
+                    <!--
+                    <button class="button" id="btnSaveSong">Download Song</button>
+                    -->
+                    <button class="button" id="btnLoadSimple">Edit</button>
+                    <hr>
+                    <br>
+                    We appreciate your feedback, you can find the contact information <a target="_blank" href="http://www.carlostoxtli.com/">here</a>.
+                    <br>
+                  </div>
+                </center>
+              </div>
+            </div>
+            <div class="bottom">
+              <div>Made with &nbsp;<a target="_blank" href="http://js.tensorflow.org" class="img-link"><img src="assets/images/tensorflow.png" height="35" style="vertical-align:middle"></a>&nbsp;<b>Tensorflow.js</b> &nbsp; and &nbsp;<a target="_blank" href="http://magenta.tensorflow.org/js" class="img-link">
+                <img src="assets/images/magenta.png" height="42" style="vertical-align:middle"></a>&nbsp;<b>Magenta.js</b> &nbsp;.&nbsp;
+              </div>
+              <div>See the code on <a target="_blank" href="https://github.com/toxtli/hum2song">GitHub</a>. <a target="_blank" href="http://www.carlostoxtli.com">Contact us</a>.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="advance">
+          <div class="box">
+            <div class="top">
+              <h1>ADVANCED MODE</h1>
+            </div>
+            <div class="middle">
+              <center>
+                <hr>
+                <div class="section">
+                  INSTRUCTIONS
+                </div>
+                <hr>
+                <br>
+                <div class="instructions">
+                  Hum2Song! is a Web AI application that is able to create an accompaniment song for a singed sound. You only need to click on the "Record Audio", start humming/singing and click on the "Stop" button to start the conversion process. Give it a try!
+                </div>
+                <hr>
+                <div class="section">
+                  INPUT
+                </div>
+                <hr>
+                <div id="buttons">
+                  <button class="button" id="btnRecord" disabled>
+                    <span class="text">Record audio</span>
+                    <span class="loading">Transcribing...</span>
+                  </button>
+                  <span>or</span>
+                  <label class="button" id="btnUpload" disabled>
+                    <span class="text">Upload file<input type="file" id="fileInput"></span>
+                    <span class="loading">Transcribing...</span>
+                  </label>
+                  <span>or</span>
+                  <button class="button" id="startStreamBtn" disabled>
+                    <span class="text">MIDI keyboard</span>
+                    <span class="loading">Recording...</span>
+                  </button>
+                </div>
+              </center>
+            </div>
+            <div id="modelReady" hidden>
+              <div class="middle">
+                <center>
+                  <div id="songOptionsAdvanced" hidden>
+                    <div id="newContent">
+                      <hr>
+                      <div class="section">
+                        OUTPUT
+                      </div>
+                      <hr>
+                        <div class="playIcon" id="playIconAdvanced">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24">
+                            <path xmlns="http://www.w3.org/2000/svg" d="M8 5v14l11-7z"/>
+                            <path xmlns="http://www.w3.org/2000/svg" d="M0 0h24v24H0z" fill="none"/>
+                          </svg>
+                        </div>
+                        <div class="stopIcon" id="stopIconAdvanced">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24">
+                            <path xmlns="http://www.w3.org/2000/svg" d="M0 0h24v24H0z" fill="none"/>
+                            <path xmlns="http://www.w3.org/2000/svg" d="M6 6h12v12H6z"/>
+                          </svg>
+                        </div>
+                        <button class="button" id="btnSave">Download</button>
+                        <!--
+                        <button class="button" id="btnSaveSongAdvanced">Download Song</button>
+                        -->
+                        <button class="button" id="btnLoad">Edit</button>
+                      <hr>
+                      <div class="section">
+                        STEP BY STEP
+                      </div>
+                      <div id="step0">
+                        <hr>
+                        <span class="instructions">
+                          Step 0.- We store locally the recorded sound.
+                        </span>
+                        <br>
+                        <br>
+                        <audio id="audioControl" controls></audio>
+                        <br>
+                      </div>
+                      <hr>
+                      <span class="instructions">
+                        Step 1.- The audio is transcribed to notes by using a RNN model. You can find more information about this model <a target="_blank" href="https://magenta.tensorflow.org/oaf-js">here</a>.
+                      </span>
+                      <br>
+                      <br>
+                      <div class="playCanvas" id="play_0"></div>
+                      <div class="downloadCanvas" id="download_0"></div>
+                      <div class="editCanvas" id="edit_0"></div>
+                      <div class="container" id="container_0">
+                        <canvas id="canvas0"></canvas>
+                      </div>
+                      <hr>
+                      <span class="instructions">
+                        Step 2.- The notes are normalized, cleaned and adjusted to 4/4
+                      </span>
+                      <br>
+                      <br>
+                      <div class="playCanvas" id="play_1"></div>
+                      <div class="downloadCanvas" id="download_1"></div>
+                      <div class="editCanvas" id="edit_1"></div>
+                      <div class="container" id="container_1">
+                        <canvas id="canvas1"></canvas>
+                      </div>
+                      <hr>
+                      <span class="instructions">
+                        Step 3.- Now we use a DNN model to predict the most likely genre from the melody. You can find more information about this model <a target="_blank" href="#">here</a>.
+                      </span>
+                      <span class="results">
+                        <h4>The predicted genre is:</h4>
+                        <h1><span id="refGenre">GENRE</span></h1>
+                        The scores are:
+                        <br>
+                        <h3 class="inline">ROCK: <span id="refRock">0.0</span></h3>&nbsp;&nbsp;
+                        <h3 class="inline">DANCE: <span id="refDance">0.0</span></h3>&nbsp;&nbsp;
+                        <h3 class="inline">JAZZ: <span id="refJazz">0.0</span></h3>
+                      </span>
+                      <hr>
+                      <span class="instructions">
+                        Step 4.- The melody is adapted to an instrument that is typically used in the predicted genre.
+                      </span>
+                      <br>
+                      <br>
+                      <div class="playCanvas" id="play_2"></div>
+                      <div class="downloadCanvas" id="download_2"></div>
+                      <div class="editCanvas" id="edit_2"></div>
+                      <div class="container" id="container_2">
+                        <canvas id="canvas2"></canvas>
+                      </div>
+                      <hr>
+                      <span class="instructions">
+                        Step 5.- A temporal drum is generated.
+                      </span>
+                      <br>
+                      <br>
+                      <div class="playCanvas" id="play_3"></div>
+                      <div class="downloadCanvas" id="download_3"></div>
+                      <div class="editCanvas" id="edit_3"></div>
+                      <div class="container" id="container_3">
+                        <canvas id="canvas3"></canvas>
+                      </div>
+                      <hr>
+                      <span class="instructions">
+                        Step 6.- A temporal bass is generated by expanding and joining the transcribed melody.
+                      </span>
+                      <br>
+                      <br>
+                      <div class="playCanvas" id="play_4"></div>
+                      <div class="downloadCanvas" id="download_4"></div>
+                      <div class="editCanvas" id="edit_4"></div>
+                      <div class="container" id="container_4">
+                        <canvas id="canvas4"></canvas>
+                      </div>
+                      <hr>
+                      <span class="instructions">
+                        Step 7.- We need to form a trio that is the combinaton of MELODY + BASS + DRUMS. This is needed to predict a sequence. This is the current trio.
+                      </span>
+                      <br>
+                      <br>
+                      <div class="playCanvas" id="play_5"></div>
+                      <div class="downloadCanvas" id="download_5"></div>
+                      <div class="editCanvas" id="edit_5"></div>
+                      <div class="container" id="container_5">
+                        <canvas id="canvas5"></canvas>
+                      </div>
+                      <hr>
+                      <span class="instructions">
+                        Step 8.- We use a RNN model that generates a trio that is the progression of the current trio. You can find more information about this model <a target="_blank" href="https://magenta.tensorflow.org/js-announce">here</a>.
+                      </span>
+                      <br>
+                      <br>
+                      <div class="playCanvas" id="play_6"></div>
+                      <div class="downloadCanvas" id="download_6"></div>
+                      <div class="editCanvas" id="edit_6"></div>
+                      <div class="container" id="container_6">
+                        <canvas id="canvas6"></canvas>
+                      </div>
+                      <hr>
+                      <span class="instructions">
+                        Step 9.- We use the original melody, the generated bass and the random drum to generate a base trio.
+                      </span>
+                      <br>
+                      <br>
+                      <div class="playCanvas" id="play_7"></div>
+                      <div class="downloadCanvas" id="download_7"></div>
+                      <div class="editCanvas" id="edit_7"></div>
+                      <div class="container" id="container_7">
+                        <canvas id="canvas7"></canvas>
+                      </div>
+                      <hr>
+                      <span class="instructions">
+                        Step 10.- Now we define the harmony, the first step is to calculate the musical scale from the melody.
+                      </span>
+                      <span class="results">
+                        <h4>The scale that fits better is:</h4>
+                        <h1><span id="refScale">A</span></h1>
+                      </span>
+                      <hr>
+                      <span class="instructions">
+                        Step 11.- From that scale we choose a chord progression that fits better to the melody.
+                      </span>
+                      <span class="results">
+                        <h4>The chord progression that fits better is:</h4>
+                        <h1><span id="refChord">A, A, A, A</span></h1>
+                      </span>
+                      <hr>
+                      <span class="instructions">
+                        Step 12.- Now we use a RNN model that is able to generate an accompaniment for our main trio, adapted to the chord progression. You can find more information about this model <a target="_blank" href="https://magenta.tensorflow.org/multitrack">here</a>.
+                      </span>
+                      <br>
+                      <br>
+                      <div class="playCanvas" id="play_8"></div>
+                      <div class="downloadCanvas" id="download_8"></div>
+                      <div class="editCanvas" id="edit_8"></div>
+                      <div class="container" id="container_8">
+                        <canvas id="canvas8"></canvas>
+                      </div>
+                      <hr>
+                      <span class="instructions">
+                        Step 13.- We also generate random accompaniment that fits to the chosen chord progression.
+                      </span>
+                      <br>
+                      <br>
+                      <div class="playCanvas" id="play_9"></div>
+                      <div class="downloadCanvas" id="download_9"></div>
+                      <div class="editCanvas" id="edit_9"></div>
+                      <div class="container" id="container_9">
+                        <canvas id="canvas9"></canvas>
+                      </div>
+                      <hr>
+                      <span class="instructions">
+                        Step 14.- Finally, we create an interpolation of 6 steps between the chords adapted trio and random sequence. We use a RNN model that can be found <a target="_blank" href="https://magenta.tensorflow.org/multitrack">here</a>.
+                      </span>
+                      <br>
+                      <br>
+                      <div class="playCanvas" id="play_10"></div>
+                      <div class="downloadCanvas" id="download_10"></div>
+                      <div class="editCanvas" id="edit_10"></div>
+                      <div class="container" id="container_10">
+                        <canvas id="canvas10"></canvas>
+                      </div>
+                      <hr>
+                      <br>
+                      We appreciate your feedback, you can find the contact information <a target="_blank" href="http://www.carlostoxtli.com/">here</a>.
+                      <br>
+                    </div>
+                  </div>
+                </center>
+              </div>
+            </div>
+            <div class="bottom">
+              <div>Made with &nbsp;<a target="_blank" href="http://js.tensorflow.org" class="img-link"><img src="assets/images/tensorflow.png" height="35" style="vertical-align:middle"></a>&nbsp;<b>Tensorflow.js</b> &nbsp; and &nbsp;<a target="_blank" href="http://magenta.tensorflow.org/js" class="img-link">
+                <img src="assets/images/magenta.png" height="42" style="vertical-align:middle"></a>&nbsp;<b>Magenta.js</b> &nbsp;.&nbsp;
+              </div>
+              <div>See the code on <a target="_blank" href="https://github.com/toxtli/hum2song">GitHub</a>. <a target="_blank" href="http://www.carlostoxtli.com">Contact us</a>.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

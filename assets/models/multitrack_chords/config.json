@@ -1,0 +1,14 @@
+{
+  "type": "MusicVAE",
+  "dataConverter": {
+    "type": "MultitrackConverter",
+    "args": {
+      "numSteps": 512,
+      "numSegments": 8,
+      "stepsPerQuarter": 24,
+      "totalSteps": 96,
+      "numVelocityBins": 8
+    }
+  },
+  "chordEncoder": "TriadChordEncoder"
+}

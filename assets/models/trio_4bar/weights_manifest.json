@@ -1,0 +1,467 @@
+[
+{
+    "paths": ["group1-shard1of5", "group1-shard2of5", "group1-shard3of5", "group1-shard4of5", "group1-shard5of5"],
+    "weights": [
+    {
+        "name": "encoder/sigma/bias",
+        "shape": [256],
+        "dtype": "float32",
+        "quantization":
+        {
+            "min": -0.3697684989256017,
+            "scale": 0.001736002342373717,
+            "dtype": "uint8"
+        }
+    },
+    {
+        "name": "encoder/hierarchical_level_1/cell_0/bidirectional_rnn/fw/multi_rnn_cell/cell_0/lstm_cell/kernel",
+        "shape": [1536, 2048],
+        "dtype": "float32",
+        "quantization":
+        {
+            "min": -1.8122680748210236,
+            "scale": 0.013228234122781193,
+            "dtype": "uint8"
+        }
+    },
+    {
+        "name": "encoder/hierarchical_level_1/cell_0/bidirectional_rnn/fw/multi_rnn_cell/cell_0/lstm_cell/bias",
+        "shape": [2048],
+        "dtype": "float32",
+        "quantization":
+        {
+            "min": -1.8595037460327148,
+            "scale": 0.009535916646321614,
+            "dtype": "uint8"
+        }
+    },
+    {
+        "name": "encoder/hierarchical_level_1/cell_0/bidirectional_rnn/bw/multi_rnn_cell/cell_0/lstm_cell/kernel",
+        "shape": [1536, 2048],
+        "dtype": "float32",
+        "quantization":
+        {
+            "min": -1.5184213413911707,
+            "scale": 0.010471871319939109,
+            "dtype": "uint8"
+        }
+    },
+    {
+        "name": "encoder/hierarchical_level_0/cell_0/bidirectional_rnn/fw/multi_rnn_cell/cell_0/lstm_cell/kernel",
+        "shape": [1204, 2048],
+        "dtype": "float32",
+        "quantization":
+        {
+            "min": -1.505388168260163,
+            "scale": 0.010601325128592697,
+            "dtype": "uint8"
+        }
+    },
+    {
+        "name": "encoder/hierarchical_level_0/cell_0/bidirectional_rnn/bw/multi_rnn_cell/cell_0/lstm_cell/bias",
+        "shape": [2048],
+        "dtype": "float32",
+        "quantization":
+        {
+            "min": -1.5020752054803512,
+            "scale": 0.006922005555208992,
+            "dtype": "uint8"
+        }
+    },
+    {
+        "name": "decoder/hierarchical_level_0/cell_1/lstm_cell/kernel",
+        "shape": [512, 1024],
+        "dtype": "float32",
+        "quantization":
+        {
+            "min": -1.4614707067901014,
+            "scale": 0.012385344972797469,
+            "dtype": "uint8"
+        }
+    },
+    {
+        "name": "decoder/hierarchical_level_0/cell_0/lstm_cell/bias",
+        "shape": [1024],
+        "dtype": "float32",
+        "quantization":
+        {
+            "min": -0.3346928532217063,
+            "scale": 0.0030705766350615257,
+            "dtype": "uint8"
+        }
+    },
+    {
+        "name": "core_decoder/core_decoder_2/decoder/multi_rnn_cell/cell_1/lstm_cell/bias",
+        "shape": [1024],
+        "dtype": "float32",
+        "quantization":
+        {
+            "min": -1.1029797967742472,
+            "scale": 0.005929998907388425,
+            "dtype": "uint8"
+        }
+    },
+    {
+        "name": "encoder/hierarchical_level_0/cell_0/bidirectional_rnn/fw/multi_rnn_cell/cell_0/lstm_cell/bias",
+        "shape": [2048],
+        "dtype": "float32",
+        "quantization":
+        {
+            "min": -1.6141700983047484,
+            "scale": 0.007912598521101709,
+            "dtype": "uint8"
+        }
+    },
+    {
+        "name": "core_decoder/core_decoder_2/decoder/z_to_initial_state/bias",
+        "shape": [1024],
+        "dtype": "float32",
+        "quantization":
+        {
+            "min": -0.3995018318587658,
+            "scale": 0.0026993367017484177,
+            "dtype": "uint8"
+        }
+    },
+    {
+        "name": "core_decoder/core_decoder_1/decoder/z_to_initial_state/bias",
+        "shape": [1024],
+        "dtype": "float32",
+        "quantization":
+        {
+            "min": -0.36817892462599516,
+            "scale": 0.0025746777945873786,
+            "dtype": "uint8"
+        }
+    },
+    {
+        "name": "core_decoder/core_decoder_0/decoder/multi_rnn_cell/cell_0/lstm_cell/kernel",
+        "shape": [602, 1024],
+        "dtype": "float32",
+        "quantization":
+        {
+            "min": -2.2246655739989936,
+            "scale": 0.014352681122574151,
+            "dtype": "uint8"
+        }
+    },
+    {
+        "name": "core_decoder/core_decoder_2/decoder/multi_rnn_cell/cell_1/lstm_cell/kernel",
+        "shape": [512, 1024],
+        "dtype": "float32",
+        "quantization":
+        {
+            "min": -1.8766514796836704,
+            "scale": 0.014661339685028675,
+            "dtype": "uint8"
+        }
+    },
+    {
+        "name": "encoder/mu/kernel",
+        "shape": [1024, 256],
+        "dtype": "float32",
+        "quantization":
+        {
+            "min": -1.1067808880525478,
+            "scale": 0.009459665709850835,
+            "dtype": "uint8"
+        }
+    },
+    {
+        "name": "core_decoder/core_decoder_1/decoder/output_projection/bias",
+        "shape": [90],
+        "dtype": "float32",
+        "quantization":
+        {
+            "min": -0.11134035797680125,
+            "scale": 0.0006185575443155625,
+            "dtype": "uint8"
+        }
+    },
+    {
+        "name": "core_decoder/core_decoder_1/decoder/output_projection/kernel",
+        "shape": [256, 90],
+        "dtype": "float32",
+        "quantization":
+        {
+            "min": -1.3276116847991943,
+            "scale": 0.010212397575378418,
+            "dtype": "uint8"
+        }
+    },
+    {
+        "name": "core_decoder/core_decoder_2/decoder/multi_rnn_cell/cell_0/lstm_cell/kernel",
+        "shape": [1024, 1024],
+        "dtype": "float32",
+        "quantization":
+        {
+            "min": -1.85093435680165,
+            "scale": 0.016981049144969267,
+            "dtype": "uint8"
+        }
+    },
+    {
+        "name": "encoder/hierarchical_level_1/cell_0/bidirectional_rnn/bw/multi_rnn_cell/cell_0/lstm_cell/bias",
+        "shape": [2048],
+        "dtype": "float32",
+        "quantization":
+        {
+            "min": -2.0101084054685106,
+            "scale": 0.010865450840370328,
+            "dtype": "uint8"
+        }
+    },
+    {
+        "name": "core_decoder/core_decoder_1/decoder/multi_rnn_cell/cell_1/lstm_cell/kernel",
+        "shape": [512, 1024],
+        "dtype": "float32",
+        "quantization":
+        {
+            "min": -1.5067344721625833,
+            "scale": 0.010918365740308574,
+            "dtype": "uint8"
+        }
+    },
+    {
+        "name": "core_decoder/core_decoder_1/decoder/multi_rnn_cell/cell_0/lstm_cell/kernel",
+        "shape": [602, 1024],
+        "dtype": "float32",
+        "quantization":
+        {
+            "min": -2.1646559359980566,
+            "scale": 0.017456902709661746,
+            "dtype": "uint8"
+        }
+    },
+    {
+        "name": "decoder/hierarchical_level_0/initial_state/bias",
+        "shape": [1024],
+        "dtype": "float32",
+        "quantization":
+        {
+            "min": -1.486610539754232,
+            "scale": 0.010930959851134058,
+            "dtype": "uint8"
+        }
+    },
+    {
+        "name": "core_decoder/core_decoder_1/decoder/multi_rnn_cell/cell_0/lstm_cell/bias",
+        "shape": [1024],
+        "dtype": "float32",
+        "quantization":
+        {
+            "min": -1.2596257174716277,
+            "scale": 0.0069592581075780535,
+            "dtype": "uint8"
+        }
+    },
+    {
+        "name": "core_decoder/core_decoder_1/decoder/z_to_initial_state/kernel",
+        "shape": [256, 1024],
+        "dtype": "float32",
+        "quantization":
+        {
+            "min": -1.184688791106729,
+            "scale": 0.008907434519599466,
+            "dtype": "uint8"
+        }
+    },
+    {
+        "name": "encoder/sigma/kernel",
+        "shape": [1024, 256],
+        "dtype": "float32",
+        "quantization":
+        {
+            "min": -0.6249502406400793,
+            "scale": 0.005080896265366498,
+            "dtype": "uint8"
+        }
+    },
+    {
+        "name": "encoder/mu/bias",
+        "shape": [256],
+        "dtype": "float32",
+        "quantization":
+        {
+            "min": -0.04129541354144321,
+            "scale": 0.0003251607365467969,
+            "dtype": "uint8"
+        }
+    },
+    {
+        "name": "core_decoder/core_decoder_0/decoder/z_to_initial_state/kernel",
+        "shape": [256, 1024],
+        "dtype": "float32",
+        "quantization":
+        {
+            "min": -1.107329439649395,
+            "scale": 0.00938414779363894,
+            "dtype": "uint8"
+        }
+    },
+    {
+        "name": "decoder/hierarchical_level_0/cell_1/lstm_cell/bias",
+        "shape": [1024],
+        "dtype": "float32",
+        "quantization":
+        {
+            "min": -0.24673378712990704,
+            "scale": 0.001958204659761167,
+            "dtype": "uint8"
+        }
+    },
+    {
+        "name": "core_decoder/core_decoder_0/decoder/z_to_initial_state/bias",
+        "shape": [1024],
+        "dtype": "float32",
+        "quantization":
+        {
+            "min": -0.2888963783488554,
+            "scale": 0.0021399731729544844,
+            "dtype": "uint8"
+        }
+    },
+    {
+        "name": "core_decoder/core_decoder_2/decoder/output_projection/kernel",
+        "shape": [256, 512],
+        "dtype": "float32",
+        "quantization":
+        {
+            "min": -1.6016055892495549,
+            "scale": 0.011278912600348977,
+            "dtype": "uint8"
+        }
+    },
+    {
+        "name": "core_decoder/core_decoder_0/decoder/multi_rnn_cell/cell_1/lstm_cell/bias",
+        "shape": [1024],
+        "dtype": "float32",
+        "quantization":
+        {
+            "min": -1.2388667876813926,
+            "scale": 0.006288663896859861,
+            "dtype": "uint8"
+        }
+    },
+    {
+        "name": "core_decoder/core_decoder_2/decoder/output_projection/bias",
+        "shape": [512],
+        "dtype": "float32",
+        "quantization":
+        {
+            "min": -0.20677646842657352,
+            "scale": 0.0012685672909605737,
+            "dtype": "uint8"
+        }
+    },
+    {
+        "name": "encoder/hierarchical_level_0/cell_0/bidirectional_rnn/bw/multi_rnn_cell/cell_0/lstm_cell/kernel",
+        "shape": [1204, 2048],
+        "dtype": "float32",
+        "quantization":
+        {
+            "min": -1.3351609005647547,
+            "scale": 0.009402541553272921,
+            "dtype": "uint8"
+        }
+    },
+    {
+        "name": "decoder/hierarchical_level_0/initial_state/kernel",
+        "shape": [256, 1024],
+        "dtype": "float32",
+        "quantization":
+        {
+            "min": -0.9088839082156911,
+            "scale": 0.0059794993961558626,
+            "dtype": "uint8"
+        }
+    },
+    {
+        "name": "core_decoder/core_decoder_0/decoder/output_projection/bias",
+        "shape": [90],
+        "dtype": "float32",
+        "quantization":
+        {
+            "min": -0.13055246454827926,
+            "scale": 0.0008477432762875277,
+            "dtype": "uint8"
+        }
+    },
+    {
+        "name": "core_decoder/core_decoder_0/decoder/output_projection/kernel",
+        "shape": [256, 90],
+        "dtype": "float32",
+        "quantization":
+        {
+            "min": -1.717742784350526,
+            "scale": 0.013112540338553634,
+            "dtype": "uint8"
+        }
+    },
+    {
+        "name": "core_decoder/core_decoder_0/decoder/multi_rnn_cell/cell_1/lstm_cell/kernel",
+        "shape": [512, 1024],
+        "dtype": "float32",
+        "quantization":
+        {
+            "min": -1.2683365681592156,
+            "scale": 0.010748614984400133,
+            "dtype": "uint8"
+        }
+    },
+    {
+        "name": "core_decoder/core_decoder_2/decoder/z_to_initial_state/kernel",
+        "shape": [256, 1024],
+        "dtype": "float32",
+        "quantization":
+        {
+            "min": -1.4282255369074204,
+            "scale": 0.011611589730954637,
+            "dtype": "uint8"
+        }
+    },
+    {
+        "name": "core_decoder/core_decoder_1/decoder/multi_rnn_cell/cell_1/lstm_cell/bias",
+        "shape": [1024],
+        "dtype": "float32",
+        "quantization":
+        {
+            "min": -1.098280887042775,
+            "scale": 0.0063484444337732655,
+            "dtype": "uint8"
+        }
+    },
+    {
+        "name": "core_decoder/core_decoder_2/decoder/multi_rnn_cell/cell_0/lstm_cell/bias",
+        "shape": [1024],
+        "dtype": "float32",
+        "quantization":
+        {
+            "min": -1.2603129606620938,
+            "scale": 0.007040854528838513,
+            "dtype": "uint8"
+        }
+    },
+    {
+        "name": "decoder/hierarchical_level_0/cell_0/lstm_cell/kernel",
+        "shape": [257, 1024],
+        "dtype": "float32",
+        "quantization":
+        {
+            "min": -0.8234863786136403,
+            "scale": 0.005967292598649567,
+            "dtype": "uint8"
+        }
+    },
+    {
+        "name": "core_decoder/core_decoder_0/decoder/multi_rnn_cell/cell_0/lstm_cell/bias",
+        "shape": [1024],
+        "dtype": "float32",
+        "quantization":
+        {
+            "min": -1.4231723963045606,
+            "scale": 0.008274258118049771,
+            "dtype": "uint8"
+        }
+    }]
+}]
