@@ -223,10 +223,6 @@ function initModels() {
   multitrack_chords = new mm.MusicVAE('assets/models/multitrack_chords');
   midiRecorder = new mm.Recorder();
   loadMultitrack();
-  let soundFontUrl = 'https://storage.googleapis.com/download.magenta.tensorflow.org/soundfonts_js/sgm_plus';
-  if (runLocal) {
-    soundFontUrl = 'assets/sounds/sgm_plus'; 
-  }
   tsynth = new Tone.FMSynth({
     "modulationIndex" : 12.22,
     "envelope" : {
@@ -241,7 +237,11 @@ function initModels() {
       "decay" : 0.01
     }
   }).toMaster();
-  playerMaster = new mm.SoundFontPlayer('assets/sounds/sgm_plus', globalCompressor, programMap, drumMap);  
+  let soundFontUrl = 'https://storage.googleapis.com/download.magenta.tensorflow.org/soundfonts_js/sgm_plus';
+  if (runLocal) {
+    soundFontUrl = 'assets/sounds/sgm_plus'; 
+  }
+  playerMaster = new mm.SoundFontPlayer(soundFontUrl, globalCompressor, programMap, drumMap);  
   playerMaster.callbackObject = {
     run: (note) => {
       const currentNotePosition = visualizerArr[nowPlaying].redraw(note);
