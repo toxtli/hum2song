@@ -469,9 +469,9 @@ function truncateNumber(decimal) {
 
 function displayPrediction(pred) {
   refGenre.innerText = pred[0];
-  refDance.innerText = truncateNumber(pred[1][0]);
-  refRock.innerText = truncateNumber(pred[1][1]);
-  refJazz.innerText = truncateNumber(pred[1][2]);
+  refDance.innerText = truncateNumber(pred[1][0])*100 + '%';
+  refRock.innerText = truncateNumber(pred[1][1])*100 + '%';
+  refJazz.innerText = truncateNumber(pred[1][2])*100 + '%';
 }
 
 function displayChords(chordRes) {
