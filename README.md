@@ -18,6 +18,7 @@ In python 3
 ```python
 sudo python -m http.server 80
 ```
+And then navigate to you http:// localhost/
 
 Screenshot:
 ![Screenshot](https://www.carlostoxtli.com/hum2song/assets/images/screenshot01.png)
