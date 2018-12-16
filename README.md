@@ -12,11 +12,11 @@ This is a basic static HTML application, so you only need to place the files in 
 
 In python 2
 ```python
-python -m SimpleHTTPServer 1337
+sudo python -m SimpleHTTPServer 80
 ```
 In python 3
 ```python
-python -m http.server 1337
+sudo python -m http.server 80
 ```
 
 Screenshot:
