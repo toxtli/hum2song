@@ -18,11 +18,11 @@
     <script src="./index.js" defer></script>
     <link rel="stylesheet" href="./index.css">
   </head>
-  <body>
+  <body class="colorScheme1">
     <div id="mainContainer">
       <div id="topbar">
         <div id="topleft">
-          <img src="assets/images/hum2song.png" height="50">
+          <object type="image/svg+xml" data="assets/images/logo.svg" class="logo" height="42"></object>
         </div>
         <div id="topcenter">
           <div id="levels">
@@ -49,7 +49,7 @@
                 <hr>
                 <br>
                 <div class="instructions">
-                  <b>Hum2Song!</b> is an <b>AI-powered</b> web application that is able to <b>compose</b> the musical <b>accompaniment</b> of a <b>melody</b> produced by a human <b>voice</b>. You only need to <b>click</b> on the "<b>Record Audio</b>" button, start <b>humming</b>/singing and click on the "<b>Stop</b>" button to start the <b>conversion</b> process.
+                  <b>Hum2Song!</b> is an <b>AI-powered</b> web application that is able to <b>compose</b> the musical <b>accompaniment</b> of a <b>melody</b> produced by a human <b>voice</b>. Once the site has loaded, you only need to <b>click</b> on the "<b>Record Audio</b>" button, start <b>humming</b>/singing and click on the "<b>Stop</b>" button to start the <b>conversion</b> process. <b>Google Chrome</b> browser is recommended.
                   <br><br>
                   This is a <b>client-side</b> only application, this means that all the <b>files</b> are stored <b>locally</b> and the <b>processing</b> happens in your <b>browser</b>. The <b>first time</b> you load this website, it <b>downloads ~100Mb</b> in models and sounds, that <b>takes in average ~1 minute</b> depending on your internet connection. <b>Please be patient</b>.
                   <br><br>
@@ -61,7 +61,7 @@
                 <hr>
                 <button class="button" id="btnRecordSimple" disabled>
                     <span class="text">Record audio</span>
-                    <span class="loading">Transcribing...</span>
+                    <span class="loading">Processing...</span>
                 </button>
               </center>
             </div>
@@ -100,11 +100,16 @@
               </div>
             </div>
             <div class="bottom">
-              <div>Made with &nbsp;<a target="_blank" href="http://js.tensorflow.org" class="img-link"><img src="assets/images/tensorflow.png" height="35" style="vertical-align:middle"></a>&nbsp;<b>Tensorflow.js</b> &nbsp; and &nbsp;<a target="_blank" href="http://magenta.tensorflow.org/js" class="img-link">
-                <img src="assets/images/magenta.png" height="42" style="vertical-align:middle"></a>&nbsp;<b>Magenta.js</b> &nbsp;.&nbsp;
-              </div>
-              <div>See the code on <a target="_blank" href="https://github.com/toxtli/hum2song">GitHub</a>. <a target="_blank" href="http://www.carlostoxtli.com/#hum2song">Contact us</a>.
-              </div>
+              <center>
+                <div class="bottomSection">
+                  <div class="theme" id="theme_0"></div><div class="theme" id="theme_1"></div><div class="theme" id="theme_2"></div><div class="theme" id="theme_3"></div><div class="theme" id="theme_4"></div><div class="theme" id="theme_5"></div>
+                </div>
+                <div class="bottomSection">
+                  Made with &nbsp;<a target="_blank" href="http://js.tensorflow.org" class="img-link"><img src="assets/images/tensorflow.png" height="35" class="aligned"></a>&nbsp;<b>Tensorflow.js</b> &nbsp; and &nbsp;<a target="_blank" href="http://magenta.tensorflow.org/js" class="img-link">
+                  <img src="assets/images/magenta.png" height="42" class="aligned"></a>&nbsp;<b>Magenta.js</b> &nbsp;.&nbsp;
+                  See the code on <a target="_blank" href="https://github.com/toxtli/hum2song">GitHub</a>. <a target="_blank" href="http://www.carlostoxtli.com/#hum2song">Contact us</a>.
+                </div>
+              </center>
             </div>
           </div>
         </div>
@@ -135,17 +140,17 @@
                 <div id="buttons">
                   <button class="button" id="btnRecord" disabled>
                     <span class="text">Record audio</span>
-                    <span class="loading">Transcribing...</span>
+                    <span class="loading">Processing...</span>
                   </button>
                   <span>or</span>
                   <label class="button" id="btnUpload" disabled>
                     <span class="text">Upload file<input type="file" id="fileInput"></span>
-                    <span class="loading">Transcribing...</span>
+                    <span class="loading">Processing...</span>
                   </label>
                   <span>or</span>
                   <button class="button" id="startStreamBtn" disabled>
                     <span class="text">MIDI keyboard</span>
-                    <span class="loading">Recording...</span>
+                    <span class="loading">Processing...</span>
                   </button>
                 </div>
               </center>
@@ -305,7 +310,7 @@
                         Step 10.- Now we define the harmony, the first step is to calculate the musical scale from the melody.
                       </span>
                       <span class="results">
-                        <h4>The scale that fits better is:</h4>
+                        <h4>The tonal scale that fits better is:</h4>
                         <h1><span id="refScale">A</span></h1>
                       </span>
                       <hr>
@@ -362,11 +367,17 @@
               </div>
             </div>
             <div class="bottom">
-              <div>Made with &nbsp;<a target="_blank" href="http://js.tensorflow.org" class="img-link"><img src="assets/images/tensorflow.png" height="35" style="vertical-align:middle"></a>&nbsp;<b>Tensorflow.js</b> &nbsp; and &nbsp;<a target="_blank" href="http://magenta.tensorflow.org/js" class="img-link">
-                <img src="assets/images/magenta.png" height="42" style="vertical-align:middle"></a>&nbsp;<b>Magenta.js</b> &nbsp;.&nbsp;
-              </div>
-              <div>See the code on <a target="_blank" href="https://github.com/toxtli/hum2song">GitHub</a>. <a target="_blank" href="http://www.carlostoxtli.com/#hum2song">Contact us</a>.
-              </div>
+              <center>
+                <div class="bottomSection">
+                  <br>
+                  <div class="theme" id="theme_0"></div><div class="theme" id="theme_1"></div><div class="theme" id="theme_2"></div><div class="theme" id="theme_3"></div><div class="theme" id="theme_4"></div><div class="theme" id="theme_5"></div>
+                </div>
+                <div class="bottomSection">
+                  Made with &nbsp;<a target="_blank" href="http://js.tensorflow.org" class="img-link"><img src="assets/images/tensorflow.png" height="35" class="aligned"></a>&nbsp;<b>Tensorflow.js</b> &nbsp; and &nbsp;<a target="_blank" href="http://magenta.tensorflow.org/js" class="img-link">
+                  <img src="assets/images/magenta.png" height="42" class="aligned"></a>&nbsp;<b>Magenta.js</b> &nbsp;.&nbsp;
+                  See the code on <a target="_blank" href="https://github.com/toxtli/hum2song">GitHub</a>. <a target="_blank" href="http://www.carlostoxtli.com/#hum2song">Contact us</a>.
+                </div>
+              </center>
             </div>
           </div>
         </div>

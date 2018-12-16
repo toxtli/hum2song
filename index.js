@@ -146,6 +146,13 @@ function initObjects() {
     });
   });
 
+  $('.theme').each((index, element) => {
+    var themeId = parseInt(element.id.split('_')[1]);
+    element.addEventListener('click', () => {
+      document.body.className = 'colorScheme' + themeId;
+    });
+  });
+
   playIconSimple.addEventListener('click', playFullSong);
 
   playIconAdvanced.addEventListener('click', playFullSong);
