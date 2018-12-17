@@ -6,6 +6,8 @@ Hum2Song! is an AI-powered web application that is able to compose the musical a
 
 Demo: https://www.carlostoxtli.com/hum2song/
 
+Blog post: https://medium.com/@carlostoxtli/hum2song-multi-track-polyphonic-music-generation-from-voice-melody-transcription-with-neural-7a777445550b
+
 ## Instructions
 
 Once the site has loaded, you only need to click on the "Record Audio" button, start humming/singing and click on the "Stop" button to start the conversion process. Google Chrome browser is recommended. This is a client-side only application, this means that all the files are stored locally and the processing happens in your browser. The first time you load this website, it downloads ~100Mb in models and sounds, that takes in average ~1 minute depending on your internet connection. Please be patient. 
