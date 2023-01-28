@@ -1,0 +1,60 @@
+#kidus Berhanu
+import numpy as np
+import librosa
+from keras.layers import LSTM, Dense, Input
+from keras.models import Model
+from keras.optimizers import Adam
+
+#  to Transcribe melody from voice recording
+def transcribe_melody(filepath):
+    y, sr = librosa.load(filepath)
+    tempo, beat_frames = librosa.beat.beat_track(y=y, sr=sr)
+    beat_times = librosa.frames_to_time(beat_frames, sr=sr)
+    melody = librosa.estimate_melody(y, sr, beat_times)
+    return melody
+
+#  to Generate training data
+# The inputs and outputs of the model are sequences of notes
+def generate_training_data(transcribed_melody, sequence_length):
+    X_train = []
+    y_train = []
+    for i in range(len(transcribed_melody) - sequence_length):
+        X_train.append(transcribed_melody[i:i+sequence_length])
+        y_train.append(transcribed_melody[i+sequence_length])
+    X_train = np.array(X_train)
+    y_train = np.array(y_train)
+    return X_train, y_train
+
+#  to Create the LSTM model
+def create_model(sequence_length):
+    input_shape = (sequence_length, 1)
+    input_layer = Input(shape=input_shape)
+    lstm_layer = LSTM(256)(input_layer)
+    dense_layer = Dense(1)(lstm_layer)
+    model = Model(inputs=input_layer, outputs=dense_layer)
+    model.compile(loss='categorical_crossentropy', optimizer=Adam())
+    return model
+
+#  to Train the model
+def train_model(model, X_train, y_train, epochs):
+    model.fit(X_train, y_train, epochs=epochs)
+
+#  to Generate a new melody
+def generate_melody(model, seed_sequence, sequence_length, num_notes):
+    melody = seed_sequence
+    for i in range(num_notes):
+        next_note = model.predict(seed_sequence)
+        melody = np.append(melody, next_note)
+        seed_sequence = melody[-sequence_length:]
+        seed_sequence = seed_sequence.reshape((1, sequence_length, 1))
+    return melody
+
+#  to Multi-track polyphonic music generation
+def generate_music(filepath, sequence_length, num_tracks):
+    transcribed_melody = transcribe_melody(filepath)
+    X_train, y_train = generate_training_data(transcribed_melody, sequence_length)
+    models = []
+    for i in range(num_tracks):
+        models.append(create_model(sequence_length))
+    for i, model in enumerate(models):
+        train_model(model, X_train, y_train, epochs
